@@ -601,6 +601,18 @@
       margin-top: 1rem;
       margin-bottom: 1rem;
     }
+
+    .article-container {
+      max-width: 100%;
+      background-color: var(--dark-color);
+      color: #fff;
+      margin: 5px;
+      overflow: hidden;
+      padding: 3px;
+      padding-top: 5px;
+      margin-top: 10px;
+      margin-bottom: 1rem;
+    }
   
     /* Utilities */
     .m-1 {

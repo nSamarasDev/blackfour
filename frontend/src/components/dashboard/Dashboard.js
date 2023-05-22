@@ -8,8 +8,11 @@ import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import { getUserArticles } from '../../actions/article'
 import Alert from '../layout/Alert';
 import Education from './Education';
+import EducationSmall from './EducationSmall';
 import Experience from './Experience';
+import ExperienceSmall from './ExperienceSmall';
 import Articles from './Articles';
+import ArticleItem from './ArticleItem';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -17,7 +20,7 @@ const Dashboard = ({
   deleteAccount,
   auth: { user },
   profile: { profile, loading },
-  article: { articles },
+  article: { articles, article },
 }) => {
   const navigate = useNavigate();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -64,21 +67,18 @@ const Dashboard = ({
               <hr />
               {isSmallScreen ? (
                 <Fragment>
-                  <div style={{ paddingTop: '20px' }}>
-                    {profile.education && profile.education.length > 0 && (
-                      <p>{profile.education[0].school}</p>
-                    )}
-                  </div>
-                  <div style={{ paddingTop: '20px' }}>
-                    {profile.experience && profile.experience.length > 0 && (
-                      <p>{profile.experience[0].title}</p>
-                    )}
-                  </div>
+                 <ExperienceSmall experience={profile.experience} />
+                  <EducationSmall education={profile.education} />
+                  
+                  <hr style={{ paddingTop: "10px" }} />
+                  <h3 className="large text-dark" style={{ paddingTop: "10px" }}>Articles</h3>
+                  <ArticleItem articles={articles} />
                 </Fragment>
               ) : (
                 <Fragment>
                   <Education education={profile.education} />
                   <Experience experience={profile.experience} />
+                  <hr style={{ paddingTop: "20px" }}/>
                   <Articles articles={articles} />
                 </Fragment>
               )}
