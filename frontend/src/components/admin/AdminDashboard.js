@@ -8,8 +8,11 @@ import { getContacts } from "../../actions/contact";
 import { getArticles } from "../../actions/article";
 import AdminActions from "./AdminActions";
 import ProfileItem from "./ProfileItem";
+import ProfileSmall from "./ProfileSmall";
 import ContactItem from "./ContactItem";
+import ContactSmall from "./ContactSmall";
 import ArticleItem from "./ArticleItem";
+import ArticlesSmall from "./ArticlesSmall";
 
 const AdminDashboard = ({
   getProfiles,
@@ -60,55 +63,23 @@ const AdminDashboard = ({
           <section className="dashboard-container">
             <h1 className="large text-dark">Profile list</h1>
             <hr />
-            <div className="contact-list">
-              {profiles.length > 0 ? (
-                profiles.map((profile) => (
-                  <p key={profile._id}>
-                    <a href={`/profile/user/${profile._id}`} className="table-link">
-                      {profile.user.name}
-                    </a>
-                  </p>
-                ))
-              ) : (
-                <p>No profiles found</p>
-              )}
-            </div>
+            <ProfileSmall profiles={profiles} />
+            
            
             <h1 className="large text-dark" style={{ paddingTop: "50px" }}>
               Contact list
             </h1>
-            <div className="contact-list">
-              {contacts.length > 0 ? (
-                contacts.map((contact) => (
-                  <p key={contact._id}>
-                    <a href={`/contact/${contact._id}`} className="table-link">
-                      {contact.name}
-                    </a>
-                  </p>
-                ))
-              ) : (
-                <p>No contacts found</p>
-              )}
-            </div>
+            <ContactSmall contacts={contacts} />
+            
             <hr />
             <h1 className="large text-dark" style={{ paddingTop: "50px" }}>
               Article list
             </h1>
-            <div className="article-list">
-              {articles.length > 0 ? (
-                articles.map((article) => (
-                  <p key={article._id}>
-                    <a href={`/article/${article._id}`} className="table-link">
-                      {article.name}
-                    </a>
-                  </p>
-                ))
-              ) : (
-                <p>No articles found</p>
-              )}
-            </div>
+            <ArticlesSmall articles={articles} />
+            
           </section>
         ) : (
+          /////////////////////////////////////////////////////////////////////////
           <section className="dashboard-container dashboard-scrollbar">
             <h1 className="large text-dark">Profile list</h1>
             <hr />

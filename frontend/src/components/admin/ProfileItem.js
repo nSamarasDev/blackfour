@@ -2,7 +2,11 @@ import { deleteProfile } from '../../actions/profile';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const ProfileItem = ({ profile: { user: { _id, name }, _id: profileId, company, website }, deleteProfile }) => (
+const ProfileItem = ({ 
+  profile: { user: { _id, name },
+   _id: profileId, company, website }, 
+   deleteProfile 
+  }) => (
   <tr>
     <td>{name}</td>
     <td className="hide-sm">{company}</td>

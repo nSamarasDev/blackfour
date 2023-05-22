@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -17,9 +17,24 @@ const ContactView = ({
     useEffect(() => {
         getContactById(id);
     }, [getContactById, id])
+
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 426);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check initial screen size
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <>
-     <section className='container'>
+     <section className='container' style={{ paddingTop: isSmallScreen ? '160px' : '0' }}>
         {contact === null || loading ? (
             <Spinner />
         ) : (

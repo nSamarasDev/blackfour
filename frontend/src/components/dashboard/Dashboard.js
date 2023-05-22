@@ -49,10 +49,10 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <>
-      <section className="container">
+      <section className="container" style={{ paddingTop: isSmallScreen ? '160px' : '0' }}>
         <Alert />
         <div className="dashboard-header">
-        <h1 className="large text-primary" style={{ paddingTop: isSmallScreen ? '160px' : '0' }}>
+        <h1 className="large text-primary" >
             Dashboard
           </h1>
           <p className="lead">
