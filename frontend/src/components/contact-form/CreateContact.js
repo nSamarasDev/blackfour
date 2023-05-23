@@ -48,8 +48,8 @@ const CreateContact = ({ createContact }) => {
   return (
     <>
       <section className="container">
-        <Alert />
         <div style={{ paddingTop: isSmallScreen ? '160px' : '0' }}>
+        <Alert />
         <h1 className="large text-primary">Contact Us</h1>
         <p className="lead">
           <i className="fas fa-user"></i> Leave a message to get login access

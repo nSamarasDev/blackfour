@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-    --primary-color: #129dee;
+    --primary-color: #00c3ff;
     --dark-color: #343a40;
     --light-color: #f4f4f4;
     --danger-color: #dc3545;
@@ -18,7 +18,7 @@
     font-family: 'Raleway', sans-serif;
     font-size: 1rem;
     line-height: 1.6;
-    background-color: #a7a7a7;
+    background-color: #888888;
     color: #343a40;
   }
   
@@ -58,7 +58,7 @@
   
   
   .dashboard-container {
-    background-color: rgb(150, 150, 150);
+    background-color: #CCCCCC;
     padding: 1rem;
     margin: 2rem auto;
     border-radius: 10px;
@@ -625,6 +625,21 @@
     .btn {
       display: block;
       width: 100%;
+      margin-bottom: 0.2rem;
+      background: var(--primary-color);
+      color: #333;
+      padding: 0.2rem 0.4rem;
+      font-size: 0.8rem;
+      border: none;
+      cursor: pointer;
+      margin-right: 0.2rem;
+      transition: opacity 0.2s ease-in;
+      outline: none;
+    }
+
+    .landing-btn {
+      display: inline-block; /* Change to inline-block to allow buttons to sit side by side */
+      width: auto; /* Change to auto to let the button size adjust based on its content */
       margin-bottom: 0.2rem;
       background: var(--primary-color);
       color: #333;

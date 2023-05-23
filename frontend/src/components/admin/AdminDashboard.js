@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import Alert from "../layout/Alert";
 import { getProfiles } from "../../actions/profile";
+import { getCurrentProfile } from "../../actions/profile";
 import { getContacts } from "../../actions/contact";
 import { getArticles } from "../../actions/article";
 import AdminActions from "./AdminActions";
@@ -13,19 +14,23 @@ import ContactItem from "./ContactItem";
 import ContactSmall from "./ContactSmall";
 import ArticleItem from "./ArticleItem";
 import ArticlesSmall from "./ArticlesSmall";
+import Education from "./Education";
+import Experience from "./Experience";
 
 const AdminDashboard = ({
+  getCurrentProfile,
   getProfiles,
   getContacts,
   getArticles,
   auth: { user },
-  profile: { profiles, loading },
+  profile: { profile, profiles, loading },
   contact: { contacts, loading: contactLoading },
   article: { articles, loading: articleLoading },
 }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
+    getCurrentProfile();
     getProfiles();
     getContacts();
     getArticles();
@@ -40,9 +45,10 @@ const AdminDashboard = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [getProfiles, getContacts, getArticles]);
+  }, [getProfiles, getCurrentProfile, getContacts, getArticles]);
 
-  console.log(profiles)
+  console.log("Experience:", profile && profile.experience);
+
 
   return loading || !contacts ? (
     <Spinner />
@@ -59,6 +65,12 @@ const AdminDashboard = ({
             <AdminActions />
           </div>
         </div>
+
+        
+
+      
+
+
         {isSmallScreen ? (
           <section className="dashboard-container">
             <h1 className="large text-dark">Profile list</h1>
@@ -80,8 +92,15 @@ const AdminDashboard = ({
           </section>
         ) : (
           /////////////////////////////////////////////////////////////////////////
+          
           <section className="dashboard-container dashboard-scrollbar">
-            <h1 className="large text-dark">Profile list</h1>
+            
+              <section className="">
+              
+                <Experience experience={profile && profile.experience} />
+                <Education education={profile && profile.education} />
+              </section>
+            <h2 className="large text-dark">Profile list</h2>
             <hr />
             <table className="table" style={{ paddingTop: "40px", paddingBottom: "40px" }}>
               <thead>
@@ -109,9 +128,9 @@ const AdminDashboard = ({
               </tbody>
             </table>
             <hr />
-            <h1 className="large text-dark" style={{ paddingTop: "50px" }}>
+            <h2 className="large text-dark" style={{ paddingTop: "50px" }}>
               Contact list
-            </h1>
+            </h2>
             <table className="table" style={{ paddingTop: "10px", paddingBottom: '40px' }}>
               <thead>
                 <tr>
@@ -138,9 +157,9 @@ const AdminDashboard = ({
               </tbody>
             </table>
             <hr />
-            <h1 className="large text-dark" style={{ paddingTop: "50px" }}>
+            <h2 className="large text-dark" style={{ paddingTop: "50px" }}>
               Article list
-            </h1>
+            </h2>
             <table className="table" style={{ paddingTop: "10px" }}>
               <thead>
                 <tr>
@@ -175,6 +194,7 @@ const AdminDashboard = ({
 
 AdminDashboard.propTypes = {
   getProfiles: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   getContacts: PropTypes.func.isRequired,
   getArticles: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -190,4 +210,4 @@ const mapStateToProps = (state) => ({
   article: state.article,
 });
 
-export default connect(mapStateToProps, { getProfiles, getContacts, getArticles })(AdminDashboard);
+export default connect(mapStateToProps, { getProfiles, getCurrentProfile, getContacts, getArticles })(AdminDashboard);

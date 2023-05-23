@@ -48,9 +48,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   }
   return (
     <>
-      <section className="container">
-        <Alert />
+      <section className="container"> 
         <div style={{ paddingTop: isSmallScreen ? '160px' : '0' }}>
+        <Alert />
         <h1 className="large text-primary">Sign Up</h1>
         <p className="lead">
           <i className="fas fa-user"></i> Create Your Account

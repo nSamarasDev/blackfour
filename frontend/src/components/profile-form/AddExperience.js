@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addExperience } from "../../actions/profile";
+import Alert from '../layout/Alert'
 
 const AddExperience = ({ addExperience }) => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const AddExperience = ({ addExperience }) => {
   return (
     <Fragment>
       <section className="container" style={{ paddingTop: isSmallScreen ? '160px' : '0' }}>
+        <Alert />
         <h1 className="large text-primary">Add Experience</h1>
         <p className="lead">
           <i className="fas fa-code-branch"></i> Add any developer/programming
