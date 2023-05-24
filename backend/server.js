@@ -30,6 +30,7 @@ app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/posts", require("./routes/api/post"));
 app.use("/api/article", require("./routes/api/article"));
 app.use("/api/reset", require("./routes/api/reset"));
+app.use("/api/book", require("./routes/api/book"));
 
 
 
