@@ -623,7 +623,7 @@
     }
   
     .btn {
-      display: block;
+      display: inline-block;
       width: 100%;
       margin-bottom: 0.2rem;
       background: var(--primary-color);
