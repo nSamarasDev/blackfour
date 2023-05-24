@@ -7,6 +7,8 @@ import { getProfiles } from "../../actions/profile";
 import { getCurrentProfile } from "../../actions/profile";
 import { getContacts } from "../../actions/contact";
 import { getArticles } from "../../actions/article";
+import ExperienceSmall from "./ExperienceSmall";
+import EducationSmall from "./EducationSmall";
 import AdminActions from "./AdminActions";
 import ProfileItem from "./ProfileItem";
 import ProfileSmall from "./ProfileSmall";
@@ -17,11 +19,12 @@ import ArticlesSmall from "./ArticlesSmall";
 import Education from "./Education";
 import Experience from "./Experience";
 
+
 const AdminDashboard = ({
-  getCurrentProfile,
   getProfiles,
   getContacts,
   getArticles,
+  getCurrentProfile,
   auth: { user },
   profile: { profile, profiles, loading },
   contact: { contacts, loading: contactLoading },
@@ -30,10 +33,10 @@ const AdminDashboard = ({
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
-    getCurrentProfile();
     getProfiles();
     getContacts();
     getArticles();
+    getCurrentProfile();
 
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 426);
@@ -47,7 +50,7 @@ const AdminDashboard = ({
     };
   }, [getProfiles, getCurrentProfile, getContacts, getArticles]);
 
-  console.log("Experience:", profile && profile.experience);
+ 
 
 
   return loading || !contacts ? (
@@ -66,25 +69,22 @@ const AdminDashboard = ({
           </div>
         </div>
 
-        
-
-      
-
-
         {isSmallScreen ? (
           <section className="dashboard-container">
+              <ExperienceSmall experience={profile && profile.experience} />
+              <EducationSmall education={profile && profile.education} />
             <h1 className="large text-dark">Profile list</h1>
             <hr />
             <ProfileSmall profiles={profiles} />
             
            
-            <h1 className="large text-dark" style={{ paddingTop: "50px" }}>
+            <h1 className="large text-dark" style={{ paddingTop: "20px" }}>
               Contact list
             </h1>
             <ContactSmall contacts={contacts} />
             
             <hr />
-            <h1 className="large text-dark" style={{ paddingTop: "50px" }}>
+            <h1 className="large text-dark" style={{ paddingTop: "20px" }}>
               Article list
             </h1>
             <ArticlesSmall articles={articles} />
@@ -96,9 +96,10 @@ const AdminDashboard = ({
           <section className="dashboard-container dashboard-scrollbar">
             
               <section className="">
+              <Experience experience={profile && profile.experience} />
               
-                <Experience experience={profile && profile.experience} />
-                <Education education={profile && profile.education} />
+              <Education education={profile && profile.education} />
+                
               </section>
             <h2 className="large text-dark">Profile list</h2>
             <hr />
@@ -201,6 +202,24 @@ AdminDashboard.propTypes = {
   profile: PropTypes.object.isRequired,
   contact: PropTypes.object.isRequired,
   article: PropTypes.object.isRequired,
+};
+
+Education.propTypes = {
+  education: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        school: PropTypes.string.isRequired,
+        degree: PropTypes.string.isRequired,
+        fieldofstudy: PropTypes.string.isRequired,
+        from: PropTypes.string.isRequired,
+        to: PropTypes.string,
+        current: PropTypes.bool,
+        description: PropTypes.string,
+      })
+    ),
+    PropTypes.object, // Allow null value
+  ]),
+  deleteEducation: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

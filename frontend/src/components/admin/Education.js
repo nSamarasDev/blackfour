@@ -35,7 +35,7 @@ const Education = ({ education, deleteEducation }) => {
   ));
   return (
     <Fragment>
-      <section style={{ paddingTop: "20px" }}>
+      <section style={{ paddingTop: "20px", paddingBottom: "30px" }}>
         <h2 className="table">Education Credentials</h2>
         <table className="table">
           <thead>
