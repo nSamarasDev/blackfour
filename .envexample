@@ -1,4 +1,4 @@
 NODE_ENV = development
-PORT = 5050
-MONGO_URI = mongodb+srv://YOURMONGOURI
+PORT = 6666
+mongodb+srv://Nsamaras:9RAGEae15EsG0u3b@androidcluster.xjxple8.mongodb.net/
 JWT_SECRET = abc123
